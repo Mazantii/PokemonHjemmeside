@@ -8,7 +8,7 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Anti's pokemon shop</title>
 </head>
-<body>
+<body style="background-color: #f8f9fa;">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid">
@@ -40,25 +40,111 @@
           <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-center">
             <div class="col p-4 d-flex flex-column position-static">
                 <h2 class="mb-0">Tilføj kort til databasen</h2>
+                <!-- Form to add cards to the database -->
+                <form class="row g-3 needs-validation" novalidate>
+                  <div class="col-md-7">
+                    <label for="validationCustom01" class="form-label">Navn</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom02" class="form-label">Udgave</label>
+                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label">Reverse/Holo</label>
+                    <select class="form-select" id="validationCustom04" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option>Reverse</option>
+                      <option>Holo</option>
+                      <option>Normal</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select something valid.
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <label for="validationCustom04" class="form-label">Vurdering</label>
+                    <select class="form-select" id="validationCustom04" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option>M</option>
+                      <option>NM</option>
+                      <option>EX</option>
+                      <option>GD</option>
+                      <option>LP</option>
+                      <option>PL</option>
+                      <option>POOR</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select something valid.
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label" for="typeNumber">Købt for</label>
+                    <input type="number" id="typeNumber" class="form-control" />
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label" for="typeNumber">Salgs pris</label>
+                    <input type="number" id="typeNumber" class="form-control" />
+                  </div>
+                  <div class="col-md-3">
+                    <label class="form-label" for="typeNumber">Antal</label>
+                    <input type="number" id="typeNumber" class="form-control" />
+                  </div>
+                  <div class="col-md-4">
+                    <label for="validationCustom04" class="form-label">Ude/Hjemme</label>
+                    <select class="form-select" id="validationCustom04" required>
+                      <option selected disabled value="">Choose...</option>
+                      <option>Ude</option>
+                      <option>Hjemme</option>
+                    </select>
+                    <div class="invalid-feedback">
+                      Please select something valid.
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="validationCustom01" class="form-label">Kommentar</label>
+                    <input type="text" class="form-control" id="validationCustom01" value="">
+                    <div class="valid-feedback">
+                      Looks good!
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button class="btn btn-primary" type="submit">Submit form</button>
+                  </div>
+                </form>
 
             </div>
           </div>
         </div>
         <div class="col-md-8">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-center">
-              <div class="col p-4 d-flex flex-column position-static">
-                  <h3 class="mb-0">Kort i databasen</h3>
-                  <div class="row mb-2">
-                    {% for item in available %}
-                        <div class="col-md-3 border rounded overflow-hidden flex-md-row" style="background: yellow;">
+            <div class="row g-0 border rounded overflow-auto mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 ">
+                  <h3 class="mb-4 text-center">Kort i databasen</h3>
+                  <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
                             <!-- Access properties of each object in the array -->
-                            <p><b>Navn:</b> {{item }}</p>
-                            <p><b>Pris:</b> {{available[item][0] }}</p>
-                            <p><b>Min vurdering:</b> {{available[item][1] }} </p>
-                            <p><b>Antal:</b> {{available[item][2] }}</p>
-                            <p><b>Købspris:</b> {{available[item][4] }}</p>
-                        </div> 
-                    {% endfor %}
+                            {% for item in available %}
+                            <div class="card" >
+                              <img src="/static/1.png" class="card-img-top" alt="Pokemon image">
+                                <div class="card-body">
+                                  <h5 class="card-title text-center"> {{item }}</h5>
+                                  <p class="m-0"><b>Udgave:</b> {{available[item][5] }}</p>
+                                  <p class="m-0"><b>Holo/Reverse?</b> {{available[item][6] }}</p>
+                                  <p class="m-0"><b>Min vurdering:</b> {{available[item][1] }} </p>
+                                  <p class="m-0"><b>Købspris:</b> {{available[item][4] }}</p>
+                                  <p class="m-0"><b>Pris:</b> {{available[item][0] }}</p>
+                                  <p class="m-0"><b>Antal:</b> {{available[item][2] }}</p>
+                                  <p class="m-0"><b>hjemme?</b> {{available[item][3] }}</p>
+                                  <p class="m-0"><b>Kommentar:</b> {{available[item][7] }}</p>
+                                </div>
+                          </div>
+                          {% endfor %}
+                        </div>
                     </div>
               </div>
             </div>

@@ -46,20 +46,28 @@
           </div>
         </div>
         <div class="col-md-8">
-            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-center">
-              <div class="col p-4 d-flex flex-column position-static">
-                  <h3 class="mb-0">Kort i databasen</h3>
-                  <div class="row mb-2">
-                    {% for item in not_available %}
-                        <div class="col-md-3 border rounded overflow-hidden flex-md-row" style="background: yellow;">
+            <div class="row g-0 border rounded overflow-auto mb-4 shadow-sm h-md-250 position-relative">
+              <div class="col p-4 ">
+                  <h3 class="mb-4 text-center">Kort ude til salg</h3>
+                  <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
                             <!-- Access properties of each object in the array -->
-                            <p><b>Navn:</b> {{item }}</p>
-                            <p><b>Pris:</b> {{available[item][0] }}</p>
-                            <p><b>Min vurdering:</b> {{available[item][1] }} </p>
-                            <p><b>Antal:</b> {{available[item][2] }}</p>
-                            <p><b>Købspris:</b> {{available[item][4] }}</p>
-                        </div> 
-                    {% endfor %}
+                            {% for item in not_available %}
+                            <div class="card" >
+                              <img src="/static/1.png" class="card-img-top" alt="Pokemon image">
+                                <div class="card-body">
+                                  <h5 class="card-title text-center"> {{item }}</h5>
+                                  <p class="m-0"><b>Udgave:</b> {{not_available[item][5] }}</p>
+                                  <p class="m-0"><b>Holo/Reverse?</b> {{not_available[item][6] }}</p>
+                                  <p class="m-0"><b>Min vurdering:</b> {{not_available[item][1] }} </p>
+                                  <p class="m-0"><b>Købspris:</b> {{not_available[item][4] }}</p>
+                                  <p class="m-0"><b>Pris:</b> {{not_available[item][0] }}</p>
+                                  <p class="m-0"><b>Antal:</b> {{not_available[item][2] }}</p>
+                                  <p class="m-0"><b>hjemme?</b> {{not_available[item][3] }}</p>
+                                  <p class="m-0"><b>Kommentar:</b> {{not_available[item][7] }}</p>
+                                </div>
+                          </div>
+                          {% endfor %}
+                        </div>
                     </div>
               </div>
             </div>

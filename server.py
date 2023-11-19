@@ -10,12 +10,14 @@ main.UpdateSales()
 earnings = main.earnings
 amount = main.total_amount_of_sales
 
+#Run the GiveAvailable function
+db.GiveAvailable()
+
 #values from db.py
 available = db.available
 not_available = db.not_home
 
-#Run the GiveAvailable function
-db.GiveAvailable()
+
 
 
 app = Flask(__name__)
