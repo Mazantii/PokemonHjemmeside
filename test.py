@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
-
+##Jeg brugte BeautifulSoup, men den kan ikke hente dynamiske sider, så
+##Jeg brugte Selenium i stedet.
 ##Login to loppemodul.dk
 url = 'https://loppemodul.dk/auth/login'
 email = 'JoakimMazanti@gmail.com'

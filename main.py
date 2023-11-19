@@ -17,6 +17,7 @@ db = cluster["pokemon"]
 collection = db["Last_Sold"]
 storage = db["storage"]
 
+
 #make a function for all of the updating of the sale
 def UpdateSales():
     #Create a session
@@ -35,12 +36,11 @@ def UpdateSales():
 
     #Set prevous individual sales to the collection in MongoDB 
 
-
-
     #######################################Find total Earnings this week#############################################
         #Find div with class "statcard statcard-success mb-md-0 mb-4 p-4"
     statcard_total_earnings = driver.find_element("css selector", "div.statcard.statcard-success.mb-md-0.mb-4.p-4")
     #Find the h3 element inside of the div
+    global earnings
     earnings = statcard_total_earnings.find_element("css selector", "h3")
 
     #Remove the "DKK" from the string
@@ -55,10 +55,13 @@ def UpdateSales():
 
     #Find the amount of sales this week
     statcard_total_sales = driver.find_element("css selector", "div.statcard.statcard-success.mb-md-0.mb-2.p-4")
-    sales = statcard_total_sales.find_element("css selector", "h3")
+    
+    global total_amount_of_sales
+
+    total_amount_of_sales = statcard_total_sales.find_element("css selector", "h3")
 
     #Turn sales into an int
-    sales = int(sales.text)
+    total_amount_of_sales = int(total_amount_of_sales.text)
 
 
     #######################################Find all individual sales this week#############################################
@@ -140,5 +143,3 @@ def UpdateSales():
         else:
             continue
         break
-
-UpdateSales()
