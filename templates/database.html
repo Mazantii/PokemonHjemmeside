@@ -41,25 +41,24 @@
             <div class="col p-4 d-flex flex-column position-static">
                 <h2 class="mb-0">Tilføj kort til databasen</h2>
                 <!-- Form to add cards to the database -->
-                <form class="row g-3 needs-validation" novalidate>
+                <form class="row g-3 needs-validation" novalidate method="post" action="/addcard">
                   <div class="col-md-7">
                     <label for="validationCustom01" class="form-label">Navn</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="" required>
+                    <input type="text" class="form-control" id="validationCustom01" name="name" required>
                     <div class="valid-feedback">
                       Looks good!
                     </div>
                   </div>
                   <div class="col-md-4">
                     <label for="validationCustom02" class="form-label">Udgave</label>
-                    <input type="text" class="form-control" id="validationCustom02" value="" required>
+                    <input type="text" class="form-control" id="validationCustom02" name="version" required>
                     <div class="valid-feedback">
                       Looks good!
                     </div>
                   </div>
                   <div class="col-md-4">
                     <label for="validationCustom04" class="form-label">Reverse/Holo</label>
-                    <select class="form-select" id="validationCustom04" required>
-                      <option selected disabled value="">Choose...</option>
+                    <select class="form-select" id="validationCustom04" name="rev_hol" required>
                       <option>Reverse</option>
                       <option>Holo</option>
                       <option>Normal</option>
@@ -70,8 +69,7 @@
                   </div>
                   <div class="col-md-3">
                     <label for="validationCustom04" class="form-label">Vurdering</label>
-                    <select class="form-select" id="validationCustom04" required>
-                      <option selected disabled value="">Choose...</option>
+                    <select class="form-select" id="validationCustom04" name="evaluation" required>
                       <option>M</option>
                       <option>NM</option>
                       <option>EX</option>
@@ -85,21 +83,25 @@
                     </div>
                   </div>
                   <div class="col-md-4">
-                    <label class="form-label" for="typeNumber">Købt for</label>
-                    <input type="number" id="typeNumber" class="form-control" />
-                  </div>
+                    <label class="form-label" for="typeNumber">Købt for (DKK)</label>
+                    <input type="text" id="typeNumber" class="form-control" name="buy_price" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required/>
+                </div>
+                
+                
                   <div class="col-md-4">
-                    <label class="form-label" for="typeNumber">Salgs pris</label>
-                    <input type="number" id="typeNumber" class="form-control" />
+                    <label class="form-label" for="typeNumber">Salgs pris (DKK)</label>
+                    <input type="text" id="typeNumber" class="form-control" name="sell_price" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required/>
                   </div>
                   <div class="col-md-3">
                     <label class="form-label" for="typeNumber">Antal</label>
-                    <input type="number" id="typeNumber" class="form-control" />
+                    <input type="text" id="typeNumber" class="form-control" name="amount" 
+                    oninput="this.value = this.value.replace(/[^0-9]/g, '')" required/>
                   </div>
-                  <div class="col-md-4">
-                    <label for="validationCustom04" class="form-label">Ude/Hjemme</label>
-                    <select class="form-select" id="validationCustom04" required>
-                      <option selected disabled value="">Choose...</option>
+                  <div class="col-md-3">
+                    <label for="validationCustom04" class="form-label">Placering</label>
+                    <select class="form-select" id="validationCustom04" name="out_home" required>
                       <option>Ude</option>
                       <option>Hjemme</option>
                     </select>
@@ -109,7 +111,7 @@
                   </div>
                   <div class="col-md-12">
                     <label for="validationCustom01" class="form-label">Kommentar</label>
-                    <input type="text" class="form-control" id="validationCustom01" value="">
+                    <input type="text" class="form-control" id="validationCustom01" name="comment">
                     <div class="valid-feedback">
                       Looks good!
                     </div>
