@@ -32,7 +32,6 @@
           </div>
         </div>
       </nav>
-
 <!-- Main -->
 <main class="container">
     <div class="row mb-2">
@@ -87,8 +86,6 @@
                     <input type="text" id="typeNumber" class="form-control" name="buy_price" 
                     oninput="this.value = this.value.replace(/[^0-9]/g, '')" required/>
                 </div>
-                
-                
                   <div class="col-md-4">
                     <label class="form-label" for="typeNumber">Salgs pris (DKK)</label>
                     <input type="text" id="typeNumber" class="form-control" name="sell_price" 
@@ -132,7 +129,7 @@
                             <!-- Access properties of each object in the array -->
                             {% for item in available %}
                             <div class="card" >
-                              <img src="/static/1.png" class="card-img-top" alt="Pokemon image">
+                              <img src={{available[item][8]}} class="card-img-top" alt="Pokemon image" >
                                 <div class="card-body">
                                   <h5 class="card-title text-center"> {{item }}</h5>
                                   <p class="m-0"><b>Udgave:</b> {{available[item][5] }}</p>
@@ -143,6 +140,23 @@
                                   <p class="m-0"><b>Antal:</b> {{available[item][2] }}</p>
                                   <p class="m-0"><b>hjemme?</b> {{available[item][3] }}</p>
                                   <p class="m-0"><b>Kommentar:</b> {{available[item][7] }}</p>
+                                  <div>
+                                    <form action="{{ url_for('deletecard') }}" method="post">
+                                      <input type="hidden" name="card_name" value="{{item}}">
+                                      <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
+                                      <button type="submit" class="btn btn-danger">Slet</button>
+                                    </form>
+                                    <form action="{{ url_for('soldcard') }}" method="post">
+                                      <input type="hidden" name="card_name" value="{{item}}">
+                                      <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
+                                      <input type="hidden" name="buy_price" value="{{available[item][4]}}">
+                                      <input type="hidden" name="sell_price" value="{{available[item][0]}}">
+                                      <input type="hidden" name="image" value="{{available[item][8]}}">
+                                      <input type="hidden" name="amount" value="{{available[item][2]}}">
+                                      <button type="submit" class="btn btn-success">Solgt</button>
+                                  </div>
+
+
                                 </div>
                           </div>
                           {% endfor %}
@@ -152,7 +166,6 @@
             </div>
           </div>
       </div>
-
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" 

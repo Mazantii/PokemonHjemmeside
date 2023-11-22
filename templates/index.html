@@ -8,7 +8,7 @@
     integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <title>Anti's pokemon shop</title>
 </head>
-<body>
+<body style="background-color: #f8f9fa;">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
         <div class="container-fluid">
@@ -44,6 +44,11 @@
                 <h3 class="mb-0">Antal salg: {{sales}}</h3>
             </div>
           </div>
+          <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-center">
+            <div class="col p-4 d-flex flex-column position-static">
+                <h2 class="mb-0">Seneste salg:</h2>
+            </div>
+          </div>
         </div>
         <div class="col-md-8">
             <div class="row g-0 border rounded overflow-auto mb-4 shadow-sm h-md-250 position-relative">
@@ -53,7 +58,7 @@
                             <!-- Access properties of each object in the array -->
                             {% for item in not_available %}
                             <div class="card" >
-                              <img src="/static/1.png" class="card-img-top" alt="Pokemon image">
+                              <img src={{not_available[item][8]}} class="card-img-top" alt="Pokemon image" >
                                 <div class="card-body">
                                   <h5 class="card-title text-center"> {{item }}</h5>
                                   <p class="m-0"><b>Udgave:</b> {{not_available[item][5] }}</p>
