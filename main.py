@@ -137,7 +137,7 @@ def UpdateSales():
             if j == i["sold_price"]:
                 profit = (i["sold_price"] * 0.85) - i["buy_price"]
                 print("Sold " + i["name"] + " for " + str(i["sold_price"]) + " and made a profit of " + str(profit) + " DKK after commission")
-                #If there is a match then subtract the amount by the sales_amount and update the storage and add a entry to the sold collection, get the time from the individual_sales array, also get the amount from the sales_amounts array
+                #If there is a match then subtract the amount by the sales_amount and update the stora  e and add a entry to the sold collection, get the time from the individual_sales array, also get the amount from the sales_amounts array
                 storage.update_one({"_id": i["_id"]}, {"$set": {"amount": i["amount"] - sales_amounts[sales_prices_stored.index(j)]}})
                 sold_storage.insert_one({"name": i["name"], "buy_price": i["buy_price"], "sold_price": i["sold_price"], "profit": profit, "image": i["image"], "time": individual_sales[sales_prices_stored.index(j)]["time"], "amount": sales_amounts[sales_prices_stored.index(j)]})
                 break

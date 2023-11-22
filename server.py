@@ -15,15 +15,16 @@ amount = main.total_amount_of_sales
 #values from db.py
 available = db.available
 not_available = db.not_home
-
+sold = db.sold
 
 app = Flask(__name__)
 
 @app.route("/")
 def home():
     db.NotHome()
+    db.GetSold()
     #Send the earnings to the index.html file
-    return render_template("index.html", earnings=earnings, sales=amount, not_available=not_available)
+    return render_template("index.html", earnings=earnings, sales=amount, not_available=not_available, sold=sold)
 
 @app.route("/database")
 def database():
@@ -61,8 +62,6 @@ def deletecard():
     pokemon_id = request.form["pokemon_id"]
     #Delete the card
     db.DeleteCard(name, pokemon_id)
-    #Update the available array
-    db.GiveAvailable()
     return render_template("database.html" , available=available)
 
 #Sold card
@@ -80,9 +79,6 @@ def soldcard():
     #Send it to the db
     db.SoldCard(name, buy_price, sold_price, profit, image, time, amount, pokemon_id)
 
-    #Update the available array
-    db.GiveAvailable()
-    
     return render_template("database.html" , available=available)
 
 

@@ -140,13 +140,8 @@
                                   <p class="m-0"><b>Antal:</b> {{available[item][2] }}</p>
                                   <p class="m-0"><b>hjemme?</b> {{available[item][3] }}</p>
                                   <p class="m-0"><b>Kommentar:</b> {{available[item][7] }}</p>
-                                  <div>
-                                    <form action="{{ url_for('deletecard') }}" method="post">
-                                      <input type="hidden" name="card_name" value="{{item}}">
-                                      <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
-                                      <button type="submit" class="btn btn-danger">Slet</button>
-                                    </form>
-                                    <form action="{{ url_for('soldcard') }}" method="post">
+                                  <div class="d-flex">
+                                    <form action="{{ url_for('soldcard') }}" method="post" class="p-1">
                                       <input type="hidden" name="card_name" value="{{item}}">
                                       <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
                                       <input type="hidden" name="buy_price" value="{{available[item][4]}}">
@@ -154,6 +149,12 @@
                                       <input type="hidden" name="image" value="{{available[item][8]}}">
                                       <input type="hidden" name="amount" value="{{available[item][2]}}">
                                       <button type="submit" class="btn btn-success">Solgt</button>
+                                    </form>
+                                    <form action="{{ url_for('deletecard') }}" method="post" class="p-1">
+                                      <input type="hidden" name="card_name" value="{{item}}">
+                                      <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
+                                      <button type="submit" class="btn btn-danger">Slet</button>
+                                    </form>
                                   </div>
 
 
