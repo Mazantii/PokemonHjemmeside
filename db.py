@@ -42,6 +42,7 @@ def PostData(name, buy_price, sold_price, my_evaluation, amount, hjemme, pokemon
 available = {}
 not_home = {}
 sold = {}
+key_statistics = {}
 
 #This is for the cards that are at home
 def GiveAvailable():
@@ -49,7 +50,7 @@ def GiveAvailable():
     for x in collection.find():
         if x["amount"] > 0:
             #if there is a match make a new object in the available array with the name as the key and the sold_price, my_evaluation and amount as the value
-            available[x["name"]] = [x["sold_price"], x["my_evaluation"], x["amount"], x["hjemme"], x["buy_price"], x["pokemon_id"],
+            available[x["_id"]] = [x["name"] ,x["sold_price"], x["my_evaluation"], x["amount"], x["hjemme"], x["buy_price"], x["pokemon_id"],
              x["holo"], x["comment"], x["image"]]
     print(available)
     return available
@@ -60,7 +61,7 @@ def NotHome():
     #Make a new array containing all of the cards that are "Ude" and have a amount of 1 or more
     for x in collection.find():
         if x["hjemme"] == "Ude" and x["amount"] > 0:
-            not_home[x["name"]] = [x["sold_price"], x["my_evaluation"], x["amount"], x["hjemme"], x["buy_price"], x["pokemon_id"],
+            not_home[x["_id"]] = [x["name"], x["sold_price"], x["my_evaluation"], x["amount"], x["hjemme"], x["buy_price"], x["pokemon_id"],
              x["holo"], x["comment"], x["image"]]
 
 #This is for getting all sold cards
@@ -70,7 +71,7 @@ def GetSold():
     entities = sold_storage.find().sort("_id", pymongo.DESCENDING)
 
     for x in entities:
-        sold[x["name"]] = [x["sold_price"], x["amount"], x["buy_price"], x["image"], x["time"], x["profit"]]
+        sold[x["_id"]] = [x["name"], x["sold_price"], x["amount"], x["buy_price"], x["image"], x["time"], x["profit"]]
     return sold
 
 #This is for deleting a card from the database
@@ -104,6 +105,42 @@ def SoldCard(name, buy_price, sold_price, profit, image, time, amount, pokemon_i
 
     #Cleanup
     DeleteZero()
+
+#This is for generating numbers for the key statistics
+#Key Statistics:
+#Total sales
+#Total money spent in total
+#Total profit
+#Total cards currently for sale and their current value
+def KeyStatistics():
+    key_statistics.clear()
+    #Total sales
+    total_sales = sold_storage.count_documents({})
+    key_statistics["total_sales"] = total_sales
+
+    #Total money spent in total
+    total_spent = 0
+    for x in collection.find():
+        total_spent += x["buy_price"] * x["amount"]
+    key_statistics["total_spent"] = total_spent
+
+    #Total profit
+    total_profit = 0
+    for x in sold_storage.find():
+        total_profit += x["profit"]
+    key_statistics["total_profit"] = total_profit
+
+    #Total cards currently for sale and their current value
+    total_cards = 0
+    total_value = 0
+    for x in collection.find():
+        total_cards += x["amount"]
+        total_value += x["sold_price"] * x["amount"]
+    key_statistics["total_cards"] = total_cards
+    key_statistics["total_value"] = total_value
+
+    return key_statistics
+
 
 
 #This is for deleting card in the collection with the amount == 0

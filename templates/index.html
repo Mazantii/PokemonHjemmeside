@@ -24,6 +24,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('database') }}">Database</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('statistics') }}">Statistics</a>
+              </li>
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search my stock" aria-label="Search">
@@ -51,21 +54,21 @@
                 <div class="card m-1" style="max-height: 250px;">
                   <div class="row g-0">
                     <div class="col-md-4">
-                      <img src="{{sold[item][3]}}" class="img-fluid rounded-start m-3" alt="Pokemon Image">
+                      <img src="{{sold[item][4]}}" class="img-fluid rounded-start m-3" alt="Pokemon Image">
                     </div>
                     <div class="col-md-8">
                       <div class="card-body">
-                        <h5 class="card-title">{{item}}</h5>
-                        <p class="card-text m-1"><b>Købt for: </b><b style="color: red;">{{sold[item][2]}}</b></p>
-                        <p class="card-text m-1"><b>Solgt for: </b><b style="color: red;">{{sold[item][0]}}</b></p>
+                        <h5 class="card-title">{{sold[item][0]}}</h5>
+                        <p class="card-text m-1"><b>Købt for: </b><b style="color: red;">{{sold[item][3]}}</b></p>
+                        <p class="card-text m-1"><b>Solgt for: </b><b style="color: red;">{{sold[item][1]}}</b></p>
                         <p class="card-text m-1"><b>Profit: </b>
-                          {% if sold[item][5] > 0 %} 
+                          {% if sold[item][6] > 0 %} 
                           {% set color = "green" %}
                           {% else %}
                           {% set color = "red" %}
                           {% endif %}
-                          <b style="color: {{color}};">{{sold[item][5]}}</b></p>
-                        <p class="card-text m-1"><b>Tidspunkt: </b><b>{{sold[item][4]}}</b></p>
+                          <b style="color: {{color}};">{{sold[item][6]}}</b></p>
+                        <p class="card-text m-1"><b>Tidspunkt: </b><b>{{sold[item][5]}}</b></p>
                       </div>
                     </div>
                   </div>
@@ -82,17 +85,17 @@
                             <!-- Access properties of each object in the array -->
                             {% for item in not_available %}
                             <div class="card" >
-                              <img src={{not_available[item][8]}} class="card-img-top" alt="Pokemon image" >
+                              <img src={{not_available[item][9]}} class="card-img-top" alt="Pokemon image" >
                                 <div class="card-body">
-                                  <h5 class="card-title text-center"> {{item }}</h5>
-                                  <p class="m-0"><b>Udgave:</b> {{not_available[item][5] }}</p>
-                                  <p class="m-0"><b>Holo/Reverse?</b> {{not_available[item][6] }}</p>
-                                  <p class="m-0"><b>Min vurdering:</b> {{not_available[item][1] }} </p>
-                                  <p class="m-0"><b>Købspris:</b> {{not_available[item][4] }}</p>
-                                  <p class="m-0"><b>Pris:</b> {{not_available[item][0] }}</p>
-                                  <p class="m-0"><b>Antal:</b> {{not_available[item][2] }}</p>
-                                  <p class="m-0"><b>hjemme?</b> {{not_available[item][3] }}</p>
-                                  <p class="m-0"><b>Kommentar:</b> {{not_available[item][7] }}</p>
+                                  <h5 class="card-title text-center"> {{not_available[item][0] }}</h5>
+                                  <p class="m-0"><b>Udgave:</b> {{not_available[item][6] }}</p>
+                                  <p class="m-0"><b>Holo/Reverse?</b> {{not_available[item][7] }}</p>
+                                  <p class="m-0"><b>Min vurdering:</b> {{not_available[item][2] }} </p>
+                                  <p class="m-0"><b>Købspris:</b> {{not_available[item][5] }}</p>
+                                  <p class="m-0"><b>Pris:</b> {{not_available[item][6] }}</p>
+                                  <p class="m-0"><b>Antal:</b> {{not_available[item][3] }}</p>
+                                  <p class="m-0"><b>hjemme?</b> {{not_available[item][4] }}</p>
+                                  <p class="m-0"><b>Kommentar:</b> {{not_available[item][8] }}</p>
                                 </div>
                           </div>
                           {% endfor %}
@@ -114,6 +117,7 @@ integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cD
             <ul class="nav justify-content-center border-bottom pb-3 mb-3">
                 <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
                 <li class="nav-item"><a href="{{ url_for('database') }}" class="nav-link px-2 text-body-secondary">Database</a></li>
+                <li class="nav-item"><a href="{{ url_for('statistics')}}" class="nav-link px-2 text-body-secondary">Statistics</a></li>
               </ul>
           <p class="text-center text-body-secondary">© 2023 Joakim O.K. Mazanti</p>
         </footer>

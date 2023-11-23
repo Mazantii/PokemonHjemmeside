@@ -32,6 +32,12 @@ def database():
     #Send the available array to the database.html file
     return render_template("database.html", available=available)
 
+@app.route("/statistics")
+def statistics():
+    #Send the length of all sold cards
+    sold_amount = len(sold)
+    return render_template("statistics.html", )
+
 @app.route("/addcard", methods=["POST"])
 def addcard():
     #Get the data from the form

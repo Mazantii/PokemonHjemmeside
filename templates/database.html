@@ -24,6 +24,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('database') }}">Database</a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('statistics') }}">Statistics</a>
+              </li>
             </ul>
             <form class="d-flex" role="search">
               <input class="form-control me-2" type="search" placeholder="Search my stock" aria-label="Search">
@@ -129,30 +132,30 @@
                             <!-- Access properties of each object in the array -->
                             {% for item in available %}
                             <div class="card" >
-                              <img src={{available[item][8]}} class="card-img-top" alt="Pokemon image" >
+                              <img src={{available[item][9]}} class="card-img-top" alt="Pokemon image" >
                                 <div class="card-body">
-                                  <h5 class="card-title text-center"> {{item }}</h5>
-                                  <p class="m-0"><b>Udgave:</b> {{available[item][5] }}</p>
-                                  <p class="m-0"><b>Holo/Reverse?</b> {{available[item][6] }}</p>
-                                  <p class="m-0"><b>Min vurdering:</b> {{available[item][1] }} </p>
-                                  <p class="m-0"><b>Købspris:</b> {{available[item][4] }}</p>
-                                  <p class="m-0"><b>Pris:</b> {{available[item][0] }}</p>
-                                  <p class="m-0"><b>Antal:</b> {{available[item][2] }}</p>
-                                  <p class="m-0"><b>hjemme?</b> {{available[item][3] }}</p>
-                                  <p class="m-0"><b>Kommentar:</b> {{available[item][7] }}</p>
+                                  <h5 class="card-title text-center"> {{available[item][0] }}</h5>
+                                  <p class="m-0"><b>Udgave:</b> {{available[item][6] }}</p>
+                                  <p class="m-0"><b>Holo/Reverse?</b> {{available[item][7] }}</p>
+                                  <p class="m-0"><b>Min vurdering:</b> {{available[item][2] }} </p>
+                                  <p class="m-0"><b>Købspris:</b> {{available[item][5] }}</p>
+                                  <p class="m-0"><b>Pris:</b> {{available[item][1] }}</p>
+                                  <p class="m-0"><b>Antal:</b> {{available[item][3] }}</p>
+                                  <p class="m-0"><b>hjemme?</b> {{available[item][4] }}</p>
+                                  <p class="m-0"><b>Kommentar:</b> {{available[item][8] }}</p>
                                   <div class="d-flex">
                                     <form action="{{ url_for('soldcard') }}" method="post" class="p-1">
-                                      <input type="hidden" name="card_name" value="{{item}}">
-                                      <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
-                                      <input type="hidden" name="buy_price" value="{{available[item][4]}}">
-                                      <input type="hidden" name="sell_price" value="{{available[item][0]}}">
-                                      <input type="hidden" name="image" value="{{available[item][8]}}">
-                                      <input type="hidden" name="amount" value="{{available[item][2]}}">
+                                      <input type="hidden" name="card_name" value="{{available[item][0]}}">
+                                      <input type="hidden" name="pokemon_id" value="{{available[item][6]}}">
+                                      <input type="hidden" name="buy_price" value="{{available[item][5]}}">
+                                      <input type="hidden" name="sell_price" value="{{available[item][1]}}">
+                                      <input type="hidden" name="image" value="{{available[item][9]}}">
+                                      <input type="hidden" name="amount" value="{{available[item][3]}}">
                                       <button type="submit" class="btn btn-success">Solgt</button>
                                     </form>
                                     <form action="{{ url_for('deletecard') }}" method="post" class="p-1">
-                                      <input type="hidden" name="card_name" value="{{item}}">
-                                      <input type="hidden" name="pokemon_id" value="{{available[item][5]}}">
+                                      <input type="hidden" name="card_name" value="{{available[item][0]}}">
+                                      <input type="hidden" name="pokemon_id" value="{{available[item][6]}}">
                                       <button type="submit" class="btn btn-danger">Slet</button>
                                     </form>
                                   </div>
@@ -178,6 +181,7 @@ integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cD
           <ul class="nav justify-content-center border-bottom pb-3 mb-3">
             <li class="nav-item"><a href="{{ url_for('home') }}" class="nav-link px-2 text-body-secondary">Home</a></li>
             <li class="nav-item"><a href="{{ url_for('database') }}" class="nav-link px-2 text-body-secondary">Database</a></li>
+            <li class="nav-item"><a href="{{ url_for('statistics')}}" class="nav-link px-2 text-body-secondary">Statistics</a></li>
           </ul>
           <p class="text-center text-body-secondary">© 2023 Joakim O.K. Mazanti</p>
         </footer>
