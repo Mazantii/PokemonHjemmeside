@@ -17,6 +17,16 @@ available = db.available
 not_available = db.not_home
 sold = db.sold
 
+#Get the key statistics info from db.py
+key_statistics = db.KeyStatistics()
+total_sales = key_statistics["total_sales"]
+total_spent = key_statistics["total_spent"]
+total_profit = key_statistics["total_profit"]
+total_cards = key_statistics["total_cards"]
+total_value = key_statistics["total_value"]
+
+
+
 app = Flask(__name__)
 
 @app.route("/")
@@ -34,9 +44,10 @@ def database():
 
 @app.route("/statistics")
 def statistics():
+    db.KeyStatistics()
     #Send the length of all sold cards
     sold_amount = len(sold)
-    return render_template("statistics.html", )
+    return render_template("statistics.html", total_sales=total_sales, total_spent=total_spent, total_profit=total_profit, total_cards=total_cards, total_value=total_value, sold_amount=sold_amount )
 
 @app.route("/addcard", methods=["POST"])
 def addcard():

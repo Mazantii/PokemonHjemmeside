@@ -120,9 +120,15 @@ def KeyStatistics():
 
     #Total money spent in total
     total_spent = 0
+    total_spent1 = 0
+    total_spent2 = 0
     for x in collection.find():
-        total_spent += x["buy_price"] * x["amount"]
+        total_spent1 += x["buy_price"] * x["amount"]
+    for x in sold_storage.find():
+        total_spent2 += x["buy_price"] * x["amount"]
+    total_spent = total_spent1 + total_spent2
     key_statistics["total_spent"] = total_spent
+
 
     #Total profit
     total_profit = 0

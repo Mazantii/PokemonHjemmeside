@@ -42,9 +42,14 @@
           <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative text-center">
             <div class="col p-4 d-flex flex-column position-static">
                 <h2 class="mb-0">Nøgle statistik</h2>
-                <!-- Form to add cards to the database -->
- 
-
+                <!-- Key statistics -->
+                <h2 class="mb-0">I alt:</h2>
+                <h3 class="mb-0">Indtjening: <b style="color: green;">{{total_profit}} DKK</b></h3>
+                <h3 class="mb-0">Samlet brugt: {{total_amount}} DKK</h3>
+                <h3 class="mb-0">Antal salg: {{total_sales}}</h3>
+                <h3 class="mb-0">Antal kort på lager: {{total_amount}}</h3>
+                <h3 class="mb-0">Nuværende værdi: {{total_value}} DKK</h3>
+                <h3 class="mb-0">Antal kort til salg: {{total_cards}}</h3>
             </div>
           </div>
         </div>
@@ -52,6 +57,7 @@
             <div class="row g-0 border rounded overflow-auto mb-4 shadow-sm h-md-250 position-relative">
               <div class="col p-4 ">
                   <h3 class="mb-4 text-center">Visuel Statistik</h3>
+                  <!-- Visuel statistics -->
                   <div class="row row-cols-1 row-cols-md-4 g-4 justify-content-center">
 
                         </div>
